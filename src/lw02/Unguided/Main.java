@@ -118,7 +118,7 @@ public class Main {
             } else {
                 failed.push(order);
             }
-        }
+        } //
 
         // Menampilkan order berhasil
         System.out.println("=== Successfully Processed Orders ===");
