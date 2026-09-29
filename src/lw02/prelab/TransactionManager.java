@@ -20,13 +20,7 @@ public class TransactionManager {
 
     // Menambahkan transaksi
     public void addTransaction(String name, String type, int amount) {
-
-        String[] transaction = {
-            name,
-            type,
-            String.valueOf(amount)
-        };
-
+        String[] transaction = {name, type, String.valueOf(amount)};
         transactions.add(transaction);
 
         // Cek apakah customer sudah ada
@@ -41,11 +35,7 @@ public class TransactionManager {
 
         // Jika belum ada, tambahkan dengan saldo awal 0
         if (!customerExists) {
-            String[] customer = {
-                name,
-                "0"
-            };
-
+            String[] customer = {name, "0"};
             customers.add(customer);
         }
     }
@@ -62,7 +52,6 @@ public class TransactionManager {
     public void processTransactions() {
 
         while (!queue.isEmpty()) {
-
             String[] transaction = queue.poll();
 
             String name = transaction[0];
@@ -70,25 +59,16 @@ public class TransactionManager {
             int amount = Integer.parseInt(transaction[2]);
 
             for (String[] customer : customers) {
-
                 if (customer[0].equals(name)) {
-
                     int balance = Integer.parseInt(customer[1]);
-
                     if (type.equals("DEPOSIT")) {
-
                         balance += amount;
                         customer[1] = String.valueOf(balance);
-
                     } else if (type.equals("WITHDRAW")) {
-
                         if (amount > balance) {
-
                             // Withdrawal gagal
                             failedTransactions.push(transaction);
-
                         } else {
-
                             balance -= amount;
                             customer[1] = String.valueOf(balance);
                         }
@@ -111,7 +91,6 @@ public class TransactionManager {
                 customer[0] + " : " + customer[1]
             );
         }
-
         System.out.println("=== Failed Transactions ===");
 
         while (!failedTransactions.isEmpty()) {
@@ -119,9 +98,7 @@ public class TransactionManager {
             String[] transaction = failedTransactions.pop();
 
             System.out.println(
-                transaction[0] + " "
-                + transaction[1] + " "
-                + transaction[2]
+                transaction[0] + " " + transaction[1] + " " + transaction[2]
             );
         }
     }
