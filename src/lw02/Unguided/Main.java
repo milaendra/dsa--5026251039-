@@ -65,13 +65,9 @@ public class Main {
 
             // Cek stock makanan
             if (!food.equals("-")) {
-
                 for (String[] data : foods) {
-
                     if (data[0].equals(food)) {
-
                         int stock = Integer.parseInt(data[1]);
-
                         if (stock <= 0) {
                             foodAvailable = false;
                         }
